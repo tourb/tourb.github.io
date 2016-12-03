@@ -102,7 +102,7 @@
 接口调用频次限制说明
 
 在这里说明一下接口每日调用次数获取access_token    2000自定义菜单创建    1000自定义菜单查询    10000自定义菜单删除    1000创建分组    1000获取分组    1000修改分组名    1000移动用户分组">
-<meta property="og:updated_time" content="2016-12-03T14:08:01.000Z">
+<meta property="og:updated_time" content="2016-12-03T14:12:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信运营使用心得03">
 <meta name="twitter:description" content="如何接入开发者模式呢？
@@ -374,7 +374,7 @@
 <blockquote>
 <p>接口调用频次限制说明</p>
 </blockquote>
-<p>在这里说明一下接口每日调用次数<br>获取access_token    2000<br>自定义菜单创建    1000<br>自定义菜单查询    10000<br>自定义菜单删除    1000<br>创建分组    1000<br>获取分组    1000<br>修改分组名    1000<br>移动用户分组    100000<br>上传多媒体文件    5000<br>下载多媒体文件    10000<br>发送客服消息    500000<br><a id="more"></a><br>高级群发接口    100<br>上传图文消息接口    10<br>删除图文消息接口    10<br>获取带参数的二维码    100000<br>获取关注者列表    500<br>获取用户基本信息    5000000<br>获取网页授权access_token    无<br>刷新网页授权access_token    无<br>网页授权获取用户信息    无<br>设置用户备注名    10000</p>
+<p>在这里说明一下接口每日调用次数<br>获取access_token    2000<br>自定义菜单创建    1000<br>自定义菜单查询    10000<br>自定义菜单删除    1000<br>创建分组    1000<br>获取分组    1000<br>修改分组名    1000<br>移动用户分组    100000<br>上传多媒体文件    5000<br>下载多媒体文件    10000<br>发送客服消息    500000<a id="more"></a><br>高级群发接口    100<br>上传图文消息接口    10<br>删除图文消息接口    10<br>获取带参数的二维码    100000<br>获取关注者列表    500<br>获取用户基本信息    5000000<br>获取网页授权access_token    无<br>刷新网页授权access_token    无<br>网页授权获取用户信息    无<br>设置用户备注名    10000</p>
 <hr>
 <p>所以我建议最好用测试号来调试接口，这样避免了当调用接口超过一定限制时，会返回错误码的情况，调用对应接口会收到如下错误返回码： <code>{&quot;errcode&quot;:45009,&quot;errmsg&quot;:&quot;api freq out of limit&quot;}</code></p>
 <blockquote>
@@ -397,7 +397,6 @@ echo $ACC_TOKEN;
 
 <p>或者用curl方法返回：</p>
 <pre><code>
-
 <?php
 /*
  *获取微信token
@@ -431,7 +430,6 @@ function gettoken($url)
     return $output;
 }
 ?>
-
 </code></pre>
 
 <p>这个access_token是有时间限制的，我记得好像是两个小时刷新一次。</p>
@@ -440,7 +438,6 @@ function gettoken($url)
 </blockquote>
 <p>部署php代码（由微信提供）: </p>
 <pre><code>
-
 <?php
 /**
   * wechat php test
@@ -545,7 +542,6 @@ class wechatCallbackapiTest
     }
 }
 ?>
-
 </code></pre>
 
 <p>在基本配置页面有一项服务器配置选项，然后输入你的URL。<br>好了，到此为止服务器配置成功了。</p>

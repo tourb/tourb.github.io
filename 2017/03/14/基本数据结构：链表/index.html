@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      基本数据结构：单链表 | 樱 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="子航">
+    
+    
+
+    <meta name="description" content="转载自http://blog.csdn.net/feitianxuxue
+
+对单链表的建立，插入，删除，逆序，打印元素做一个小小的总结，不过我不觉得这些东西在具体的工作后到底能发挥什么作用，因为强大的STL已经把这些都做好了，我们只需要明白在什么场合使用哪一个STL就可以了。链表有一个数据域，有一个指针域，它的操作其实就是对指针域的操作，无非是指来指去而已。也许这些能反映出一个人的思维敏捷度，以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基本数据结构：单链表 | 樱">
+<meta property="og:url" content="http://bestyzh.cn/2017/03/14/基本数据结构：链表/index.html">
+<meta property="og:site_name" content="樱">
+<meta property="og:description" content="转载自http://blog.csdn.net/feitianxuxue
+
+对单链表的建立，插入，删除，逆序，打印元素做一个小小的总结，不过我不觉得这些东西在具体的工作后到底能发挥什么作用，因为强大的STL已经把这些都做好了，我们只需要明白在什么场合使用哪一个STL就可以了。链表有一个数据域，有一个指针域，它的操作其实就是对指针域的操作，无非是指来指去而已。也许这些能反映出一个人的思维敏捷度，以">
+<meta property="og:image" content="http://img.blog.csdn.net/20130815202831046?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmVpdGlhbnh1eHVl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20130815202748046?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmVpdGlhbnh1eHVl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-03-14T12:21:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基本数据结构：单链表 | 樱">
+<meta name="twitter:description" content="转载自http://blog.csdn.net/feitianxuxue
+
+对单链表的建立，插入，删除，逆序，打印元素做一个小小的总结，不过我不觉得这些东西在具体的工作后到底能发挥什么作用，因为强大的STL已经把这些都做好了，我们只需要明白在什么场合使用哪一个STL就可以了。链表有一个数据域，有一个指针域，它的操作其实就是对指针域的操作，无非是指来指去而已。也许这些能反映出一个人的思维敏捷度，以">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20130815202831046?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmVpdGlhbnh1eHVl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">樱</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          记录，成为更好的自己~
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="http://weibo.com/u/2894819977?is_hot=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">基本数据结构：单链表</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-03-14" class="post-meta__date date">2017-03-14</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/数据结构/">数据结构</a>
+            </font>
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/数据结构/">数据结构</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <blockquote>
+<p>转载自<a href="http://blog.csdn.net/feitianxuxue" target="_blank" rel="external">http://blog.csdn.net/feitianxuxue</a></p>
+</blockquote>
+<p>对单链表的建立，插入，删除，逆序，打印元素做一个小小的总结，不过我不觉得这些东西在具体的工作后到底能发挥什么作用，因为强大的STL已经把这些都做好了，我们只需要明白在什么场合使用哪一个STL就可以了。链表有一个数据域，有一个指针域，它的操作其实就是对指针域的操作，无非是指来指去而已。也许这些能反映出一个人的思维敏捷度，以及扎实的编程基础吧。<br>但是我想说的是这些玩意在你头脑比较清楚的时候写这个很简单，但是当你烦躁的时候，不好写吧，除非你经常写这个。单链表看着简单，但是不见得能写的正确。<br>该代码经过验证，测试正确，但是代码中不免有错误之处，或者哪些部分写的不好，希望高手能指出来，不胜感激。因为代码必须经过验证，那些没有经过验证的代码是不负责任的代码。在代码中我加了详细的注释。</p>
+<pre><code>#include &lt;stdio.h&gt;  
+#include &lt;string&gt;  
+#include &lt;iostream&gt; 
+using namespace std;    
+typedef struct NODE_STRU  
+{  
+    int data;//数据域  
+    struct NODE_STRU *next;//指针域  
+}NODE;  
+//创建单链表  
+NODE *Create()  
+{  
+    NODE *head, *p, *s;//head表示头结点，p表示当前节点，s表示添加的新节点  
+    int input_data;  
+    int cycle_flag = 1;  
+    head = (NODE*)malloc(sizeof(NODE));//首先为头结点分配空间  
+    p = head;//当前节点指向头结点  
+
+    while(cycle_flag)  
+    {  
+        cout &lt;&lt; &quot;please input data(if input 0, cycle over!):&quot;&lt;&lt; endl;  
+        cin &gt;&gt; input_data;  
+        if(0 != input_data)  
+        {  
+            s = (NODE*)malloc(sizeof(NODE));//为新添加的数据分配节点空间  
+            s-&gt;data = input_data;  
+            p-&gt;next = s;//当前节点的下一个节点指向新节点  
+            p = s;//将当前节点指向新节点  
+        }  
+        else  
+        {  
+            cycle_flag = 0;  
+        }  
+    }  
+    head = head-&gt;next;//由于头结点没有数据，使头结点指向下一个节点，即指向第一个真正的节点  
+    p-&gt;next = NULL;//数据插入完成后，当前节点也跑到了最后，使它的下一个节点置为NULL，表示节点完成    
+    return head;  
+}   
+//单链表测长,这个很简单，只需判断当前节点（初始化当前节点为头结点）是不是为空，如果不为空指向下一个节点，并计数就可以了  
+int Length(NODE *head)  
+{  
+    int length = 0;  
+    NODE *p = head;  
+    while(p != NULL)  
+    {  
+        p = p-&gt;next;  
+        length++;  
+    }  
+    return length;  
+}    
+//打印单链表，这个也很简单，在当前节点（初始化当前节点为头结点）不为空时候，打印出来，并使得当前节点指向下一个节点即可  
+void Print(NODE *head)  
+{  
+    NODE *p = head;  
+    int length = Length(head);  
+    cout &lt;&lt; &quot;link length is: &quot; &lt;&lt; length &lt;&lt; endl;  
+    while(p != NULL)  
+    {  
+        cout &lt;&lt; &quot;data: &quot; &lt;&lt; p-&gt;data &lt;&lt; &quot;\t&quot;;  
+        p = p-&gt;next;  
+    }  
+}  
+//删除节点,这里的删除节点是根据节点数据进行删除的，不是从第一个节点进行删除，也不是从最后一个节点进行删除  
+//p-&gt;next = p-&gt;next-&gt;next  
+NODE *Del(NODE *head, int num)  
+{  
+    NODE *p1, *p2;//p1表示当前节点，初始化时指向头结点  
+    p1 = head;  
+
+    while(num != p1-&gt;data &amp;&amp; p1-&gt;next != NULL)//如果当前节点的数据域与要删除的数据不相等，使当前节点指向下一个节点  
+    {  
+        p2 = p1;//在未找到节点时指针指向下一个节点前，先保存该节点  
+        p1 = p1-&gt;next;  
+    }  
+
+    if(num == p1-&gt;data)//如果当前节点数据域与要删除的数据相等  
+    {  
+        if(p1 == head)//如果当前节点为头结点，将头结点指向当前节点的下一个节点，并释放当前节点  
+        {  
+            head = p1-&gt;next;  
+            free(p1);  
+        }  
+        else//如果当前节点为中间节点，使当前节点指向下一个节点，注意：这里不能使用p1-&gt;next=p1-&gt;next-&gt;next,使用之前保存的节点  
+            p2-&gt;next = p1-&gt;next;  
+    }  
+    else  
+        cout &lt;&lt; num &lt;&lt; &quot;can not find in link!&quot; &lt;&lt; endl;  
+
+    return head;  
+}  
+//插入节点，在这里只在链表的结尾进行插入  
+NODE *Insert(NODE *head, int num)  
+{  
+    NODE *p0, *p1, *p2;//p0表示新插入的节点，p1表示当前节点，初始化的时候指向头结点，p2用于保存当前节点  
+    p1 = head;  
+    p0 = (NODE *)malloc(sizeof(NODE));  
+    p0-&gt;data = num;  
+    while(p1-&gt;next != NULL)//如果当前节点的下一个节点不为空，当前节点指向下一个节点，这样当前节点最后为最后一个节点  
+    {  
+        p2 = p1;  
+        p1 = p1-&gt;next;  
+    }  
+    p1-&gt;next = p0;  
+    p0-&gt;next = NULL;   
+    return head;  
+}  
+//进行排序，其实就是简单的冒泡排序，时间复杂度为O(n2),空间复杂度为O(1),稳定  
+NODE *Sort(NODE *head)  
+{  
+    NODE *p;  
+    if(head == NULL || head-&gt;next == NULL)  
+        return head;  
+    int length = Length(head);//得到链表的长度，用于遍历  
+    for(int i=1; i&lt;length; i++)  
+    {  
+        p = head;  
+        for(int j=0; j&lt;length-i; j++)  
+        {  
+            if(p-&gt;data &gt; p-&gt;next-&gt;data)  
+            {  
+                int temp = p-&gt;data;  
+                p-&gt;data = p-&gt;next-&gt;data;  
+                p-&gt;next-&gt;data = temp;  
+            }  
+            p = p-&gt;next;  
+        }  
+    }  
+    return head;  
+}   
+//链表逆序  
+NODE *Reverse(NODE *head)  
+{  
+    if(head == NULL || head-&gt;next == NULL)  
+        return head;  
+    //这样来实现，在链表中一次从链表尾删除节点，然后在新建立的链表中插入节点（尾插法）  
+    int length = Length(head);  
+    int a[length];  
+    int i = 0;  
+    NODE *p = head;  
+    while(p != NULL)  
+    {  
+        a[i] = p-&gt;data;  
+        i++;  
+        p = p-&gt;next;  
+    }  
+    for(int j=0; j&lt;length; j++)//暂时用于测试  
+        cout &lt;&lt; j &lt;&lt; &quot;:&quot; &lt;&lt; a[j]&lt;&lt;&quot;\n&quot;;  
+
+    NODE *newhead, *link, *s;  
+    newhead = (NODE *)malloc(sizeof(NODE));  
+    link = newhead;  
+    for(int k=length-1; k&gt;=0; k--)  
+    {  
+         s = (NODE *)malloc(sizeof(NODE));  
+         s-&gt;data = a[k];  
+         link-&gt;next = s;  
+         link = s;  
+    }  
+    newhead = newhead-&gt;next;  
+    link-&gt;next = NULL;  
+    return newhead;  
+}  
+//求单链表的中间节点  
+void SearchMid(NODE* head)  
+{  
+    cout &lt;&lt; &quot;head data: &quot; &lt;&lt; head-&gt;data&lt;&lt; &quot;\n&quot;;  
+    NODE *tmp1 = head;  
+    NODE *tmp2 = head;  
+    NODE *mid;  
+    while(tmp1-&gt;next != NULL &amp;&amp; tmp1-&gt;next-&gt;next != NULL)  
+    {  
+        tmp1 = tmp1-&gt;next-&gt;next;  
+        tmp2 = tmp2-&gt;next;  
+        cout &lt;&lt; &quot;tmp1:&quot; &lt;&lt; tmp1-&gt;data&lt;&lt; &quot;,tmp2:&quot; &lt;&lt; tmp2-&gt;data&lt;&lt;&quot;\n&quot;;  
+    }  
+    mid = tmp2;  
+    cout &lt;&lt; &quot;SearchMid mid data: &quot; &lt;&lt; mid-&gt;data;  
+}  
+int main(int argc, char *argv[])  
+{  
+    cout &lt;&lt; &quot;create link...\n&quot; &lt;&lt; endl;  
+    NODE *p = Create();  
+    cout &lt;&lt; &quot;print link...\n&quot; &lt;&lt; endl;  
+    Print(p);  
+    int delnode;  
+    cout &lt;&lt; &quot;\ninput delete node: &quot;;  
+    cin &gt;&gt; delnode;  
+    cout &lt;&lt; &quot;\ndelete node &quot; &lt;&lt; delnode &lt;&lt; endl;  
+    Del(p, delnode);  
+    cout &lt;&lt; &quot;print link...&quot; &lt;&lt; endl;  
+    Print(p);  
+    cout &lt;&lt; &quot;\ninsert link...\n&quot;;  
+    Insert(p, 20);  
+    Print(p);  
+    cout &lt;&lt;&quot;\nsort from low to high...&quot;;  
+    Sort(p);  
+    Print(p);  
+    cout &lt;&lt; &quot;\nreverse...\n&quot;;  
+    NODE *revlink = Reverse(p);  
+    Print(revlink);  
+    cout &lt;&lt; &quot;\nfind mid node data...\n&quot;;  
+    SearchMid(p);  
+    return 0;  
+}  
+</code></pre><p>运行结果：<br><img src="http://img.blog.csdn.net/20130815202831046?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmVpdGlhbnh1eHVl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img"><br><img src="http://img.blog.csdn.net/20130815202748046?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmVpdGlhbnh1eHVl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img2"></p>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright"><script type="text/javascript">
+
+copyright=new Date();//取得当前的日期
+update=copyright.getFullYear();//取得当前的年份
+document.write(" ©"+ update );//update为自动更新的年份
+
+</script>
+ | Powered by Hexo  | zihang</span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

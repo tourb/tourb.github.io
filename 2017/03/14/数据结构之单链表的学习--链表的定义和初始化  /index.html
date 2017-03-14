@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      数据结构之单链表的学习--链表的定义和初始化 | 樱 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="子航">
+    
+    
+
+    <meta name="description" content="数据结构中是计算机中的核心课程，其中链表是数据结构中的核心，是线性结构中的核心，其中的动态栈，动态队列其内核就是链表，单链表对其增加功能就可构成双链表，循环链表继而构成更为复杂的数据结构 （注：这里单链表是指非循环单链表&amp;lt;下面简称链表&amp;gt;）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构之单链表的学习--链表的定义和初始化 | 樱">
+<meta property="og:url" content="http://bestyzh.cn/2017/03/14/数据结构之单链表的学习--链表的定义和初始化  /index.html">
+<meta property="og:site_name" content="樱">
+<meta property="og:description" content="数据结构中是计算机中的核心课程，其中链表是数据结构中的核心，是线性结构中的核心，其中的动态栈，动态队列其内核就是链表，单链表对其增加功能就可构成双链表，循环链表继而构成更为复杂的数据结构 （注：这里单链表是指非循环单链表&amp;lt;下面简称链表&amp;gt;）">
+<meta property="og:image" content="http://bestyzh.cn/C:\Users\john\blog\source\img\2502875492928074923.jpg">
+<meta property="og:image" content="http://bestyzh.cn/C:\Users\john\blog\source\img\2731714648993841156.jpg">
+<meta property="og:updated_time" content="2017-03-14T12:37:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构之单链表的学习--链表的定义和初始化 | 樱">
+<meta name="twitter:description" content="数据结构中是计算机中的核心课程，其中链表是数据结构中的核心，是线性结构中的核心，其中的动态栈，动态队列其内核就是链表，单链表对其增加功能就可构成双链表，循环链表继而构成更为复杂的数据结构 （注：这里单链表是指非循环单链表&amp;lt;下面简称链表&amp;gt;）">
+<meta name="twitter:image" content="http://bestyzh.cn/C:\Users\john\blog\source\img\2502875492928074923.jpg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">樱</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          记录，成为更好的自己~
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="http://weibo.com/u/2894819977?is_hot=1" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">数据结构之单链表的学习--链表的定义和初始化</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-03-14" class="post-meta__date date">2017-03-14</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/数据结构/">数据结构</a>
+            </font>
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/数据结构/">数据结构</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>数据结构中是计算机中的核心课程，其中链表是数据结构中的核心，是线性结构中的核心，其中的动态栈，动态队列其内核就是链表，单链表对其增加功能就可构成双链表，循环链表继而构成更为复杂的数据结构 （注：这里单链表是指非循环单链表&lt;下面简称链表&gt;）<a id="more"></a></p>
+<h3 id="链表的定义"><a href="#链表的定义" class="headerlink" title="链表的定义"></a>链表的定义</h3><p>  <img src="C:\Users\john\blog\source\img\2502875492928074923.jpg" alt="img01"></p>
+<h3 id="链表的初始化"><a href="#链表的初始化" class="headerlink" title="链表的初始化"></a>链表的初始化</h3><p>在计算机中，我们认为，一个个体的存储问题只要需要解决两个方面的问题：</p>
+<p>1.个体的存储</p>
+<p>2.个体与个体之间的关系</p>
+<p> 链表的个体存储：</p>
+<p> 即单个节点的存储，我们一般是动态分配内存（在堆中分配），方便跨函数使用</p>
+<p> 链表间关系间的关系的确定：</p>
+<p>节点分为两个部分，数据域和指针域，前者是用于存储数据，后者是用于确定下一个节点的位置</p>
+<p> 示意图：<br>      <img src="C:\Users\john\blog\source\img\2731714648993841156.jpg" alt="img01"></p>
+<h3 id="源代码（c语言）"><a href="#源代码（c语言）" class="headerlink" title="源代码（c语言）"></a>源代码（c语言）</h3><pre><code>①.构造链表节点
+
+    typedef struct Node    //一个单独的节点
+          {
+                int data;//数据域
+                struct Node * pNext;//指针域
+           }NODE,* PNODE;
+
+②.链表的初始化
+
+   PNODE init_list()
+         {
+                 int len ;//链表的长度
+                 int i;//循环开关
+                 int val;//节点的值
+
+                 PNODE pHead = (PNODE)malloc(sizeof(NODE));//造出头结点
+
+                 if (NULL==pHead)
+                 {
+                      printf(&quot;链表动态分配失败！程序终止！\n&quot;);
+                      exit(-1);
+                 }
+                 else
+                 {
+                       printf(&quot;请输入要创建链表的长度len=&quot;);
+                       scanf(&quot;%d&quot;,&amp;len);
+
+                       if (0==len)
+                       {   
+                            pHead-&gt;pNext = NULL;
+                             return pHead;  //对空链表的处理
+                        }
+                        if (len&lt;0)  //对长度为负数的处理
+                         {
+                                printf(&quot;链表的长度不能为负数！\n&quot;);
+                                exit(-1);
+                         }
+
+                        PNODE pTail = pHead;//pTail指向的是尾节点
+                        pTail-&gt;pNext = NULL;
+
+                        for (i=0;i&lt;len;i++)
+                         {
+                              PNODE pNew = (PNODE)malloc(sizeof(NODE));//造出新的节点
+                              printf(&quot;请输入第%d个节点的数值val =&quot;,i+1);
+                              scanf(&quot;%d&quot;,&amp;val);
+
+                              pNew-&gt;data = val;  //赋值
+                              pTail-&gt;pNext = pNew; //连接新的节点
+                              pTail = pNew;      //pTail后移
+                          }
+                          pTail-&gt;pNext = NULL;//最后一个节点的指针域必须为空
+                          return pHead; //返回头结点以用来表示整个链表
+
+
+                            }
+         }
+</code></pre>
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright"><script type="text/javascript">
+
+copyright=new Date();//取得当前的日期
+update=copyright.getFullYear();//取得当前的年份
+document.write(" ©"+ update );//update为自动更新的年份
+
+</script>
+ | Powered by Hexo  | zihang</span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

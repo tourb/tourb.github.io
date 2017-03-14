@@ -18,22 +18,22 @@
 
     <meta name="description" content="转载自http://blog.csdn.net/feitianxuxue
 
-对单链表的建立，插入，删除，逆序，打印元素做一个小小的总结，不过我不觉得这些东西在具体的工作后到底能发挥什么作用，因为强大的STL已经把这些都做好了，我们只需要明白在什么场合使用哪一个STL就可以了。链表有一个数据域，有一个指针域，它的操作其实就是对指针域的操作，无非是指来指去而已。也许这些能反映出一个人的思维敏捷度，以">
+对单链表的建立，插入，删除，逆序，打印元素做一个小小的总结，不过我不觉得这些东西在具体的工作后到底能发挥什么作用，因为强大的STL已经把这些都做好了，我们只需要明白在什么场合使用哪一个STL就可以了。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基本数据结构：单链表 | 樱">
 <meta property="og:url" content="http://bestyzh.cn/2017/03/14/基本数据结构：链表/index.html">
 <meta property="og:site_name" content="樱">
 <meta property="og:description" content="转载自http://blog.csdn.net/feitianxuxue
 
-对单链表的建立，插入，删除，逆序，打印元素做一个小小的总结，不过我不觉得这些东西在具体的工作后到底能发挥什么作用，因为强大的STL已经把这些都做好了，我们只需要明白在什么场合使用哪一个STL就可以了。链表有一个数据域，有一个指针域，它的操作其实就是对指针域的操作，无非是指来指去而已。也许这些能反映出一个人的思维敏捷度，以">
+对单链表的建立，插入，删除，逆序，打印元素做一个小小的总结，不过我不觉得这些东西在具体的工作后到底能发挥什么作用，因为强大的STL已经把这些都做好了，我们只需要明白在什么场合使用哪一个STL就可以了。">
 <meta property="og:image" content="http://img.blog.csdn.net/20130815202831046?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmVpdGlhbnh1eHVl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20130815202748046?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmVpdGlhbnh1eHVl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-03-14T12:21:37.000Z">
+<meta property="og:updated_time" content="2017-03-14T12:39:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基本数据结构：单链表 | 樱">
 <meta name="twitter:description" content="转载自http://blog.csdn.net/feitianxuxue
 
-对单链表的建立，插入，删除，逆序，打印元素做一个小小的总结，不过我不觉得这些东西在具体的工作后到底能发挥什么作用，因为强大的STL已经把这些都做好了，我们只需要明白在什么场合使用哪一个STL就可以了。链表有一个数据域，有一个指针域，它的操作其实就是对指针域的操作，无非是指来指去而已。也许这些能反映出一个人的思维敏捷度，以">
+对单链表的建立，插入，删除，逆序，打印元素做一个小小的总结，不过我不觉得这些东西在具体的工作后到底能发挥什么作用，因为强大的STL已经把这些都做好了，我们只需要明白在什么场合使用哪一个STL就可以了。">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20130815202831046?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmVpdGlhbnh1eHVl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
     
     
@@ -236,7 +236,7 @@ classes that you can use:
     <blockquote>
 <p>转载自<a href="http://blog.csdn.net/feitianxuxue" target="_blank" rel="external">http://blog.csdn.net/feitianxuxue</a></p>
 </blockquote>
-<p>对单链表的建立，插入，删除，逆序，打印元素做一个小小的总结，不过我不觉得这些东西在具体的工作后到底能发挥什么作用，因为强大的STL已经把这些都做好了，我们只需要明白在什么场合使用哪一个STL就可以了。链表有一个数据域，有一个指针域，它的操作其实就是对指针域的操作，无非是指来指去而已。也许这些能反映出一个人的思维敏捷度，以及扎实的编程基础吧。<br>但是我想说的是这些玩意在你头脑比较清楚的时候写这个很简单，但是当你烦躁的时候，不好写吧，除非你经常写这个。单链表看着简单，但是不见得能写的正确。<br>该代码经过验证，测试正确，但是代码中不免有错误之处，或者哪些部分写的不好，希望高手能指出来，不胜感激。因为代码必须经过验证，那些没有经过验证的代码是不负责任的代码。在代码中我加了详细的注释。</p>
+<p>对单链表的建立，插入，删除，逆序，打印元素做一个小小的总结，不过我不觉得这些东西在具体的工作后到底能发挥什么作用，因为强大的STL已经把这些都做好了，我们只需要明白在什么场合使用哪一个STL就可以了。<a id="more"></a>链表有一个数据域，有一个指针域，它的操作其实就是对指针域的操作，无非是指来指去而已。也许这些能反映出一个人的思维敏捷度，以及扎实的编程基础吧。<br>但是我想说的是这些玩意在你头脑比较清楚的时候写这个很简单，但是当你烦躁的时候，不好写吧，除非你经常写这个。单链表看着简单，但是不见得能写的正确。<br>该代码经过验证，测试正确，但是代码中不免有错误之处，或者哪些部分写的不好，希望高手能指出来，不胜感激。因为代码必须经过验证，那些没有经过验证的代码是不负责任的代码。在代码中我加了详细的注释。</p>
 <pre><code>#include &lt;stdio.h&gt;  
 #include &lt;string&gt;  
 #include &lt;iostream&gt; 
